@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0.x'  # Replace with your .NET version if different
+        dotnet-version: '8.0.x'  # Replace with your .NET version if different
 
     - name: Restore dependencies
       run: dotnet restore ForburyExcel/ForburySolution.sln
@@ -27,8 +27,8 @@ jobs:
 
     - name: Copy Test Data
       run: |
-        mkdir -p ForburySolution/ExcelTests/bin/Release/net7.0/TestData
-        cp ForburySolution/TestData/testdata.xlsx ForburySolution/ExcelTests/bin/Release/net7.0/TestData/
+        mkdir -p ForburySolution/ExcelTests/bin/Release/net8.0/TestData
+        cp ForburySolution/TestData/testdata.xlsx ForburySolution/ExcelTests/bin/Release/net8.0/TestData/
 
     - name: Run tests
       run: dotnet test ForburySolution/ExcelTests/ExcelTests.csproj --configuration Release --no-build --logger "trx"
