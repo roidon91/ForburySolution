@@ -31,7 +31,7 @@ jobs:
         # cp ForburySolution/TestData/testdata.xlsx ForburySolution/ExcelTests/bin/Release/net8.0/TestData/
 
     - name: Run tests
-      run: dotnet test ForburySolution/ForburySolution.csproj --configuration Release --no-build --logger "trx"
+      run: dotnet test ForburyExcel/ForburySolution/ForburySolution.csproj --configuration Release --no-build --logger "trx"
 
     - name: Publish Test Results
       uses: actions/upload-artifact@v4
