@@ -28,7 +28,7 @@ jobs:
     - name: Copy Test Data
       run: |
         mkdir -p ForburySolution/ExcelTests/bin/Release/net8.0/TestData
-        cp ForburySolution/TestData/testdata.xlsx ForburySolution/ExcelTests/bin/Release/net8.0/TestData/
+        #cp ForburySolution/TestData/testdata.xlsx ForburySolution/ExcelTests/bin/Release/net8.0/TestData/
 
     - name: Run tests
       run: dotnet test ForburySolution/ExcelTests/ExcelTests.csproj --configuration Release --no-build --logger "trx"
