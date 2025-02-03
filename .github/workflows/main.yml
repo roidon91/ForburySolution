@@ -20,10 +20,10 @@ jobs:
         dotnet-version: '7.0.x'  # Replace with your .NET version if different
 
     - name: Restore dependencies
-      run: dotnet restore ForburySolution/ForburySolution.sln
+      run: dotnet restore ForburySolution.sln
 
     - name: Build project
-      run: dotnet build ForburySolution/ForburySolution.sln --configuration Release --no-restore
+      run: dotnet build ForburySolution.sln --configuration Release --no-restore
 
     - name: Copy Test Data
       run: |
