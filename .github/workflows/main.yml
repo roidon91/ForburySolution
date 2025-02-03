@@ -34,7 +34,7 @@ jobs:
       run: dotnet test ForburySolution/ExcelTests/ExcelTests.csproj --configuration Release --no-build --logger "trx"
 
     - name: Publish Test Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: ForburySolution/ExcelTests/TestResults
