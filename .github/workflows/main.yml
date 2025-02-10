@@ -1,0 +1,40 @@
+name: .NET Core CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'  # Replace with your .NET version if different
+
+    - name: Restore dependencies
+      run: dotnet restore ForburyExcel/ForburySolution.sln
+
+    - name: Build project
+      run: dotnet build ForburyExcel/ForburySolution.sln --configuration Release --no-restore
+
+    - name: Copy Test Data
+      run: |
+        mkdir -p ForburySolution/ExcelTests/bin/Release/net8.0/TestData
+        # cp ForburySolution/TestData/testdata.xlsx ForburySolution/ExcelTests/bin/Release/net8.0/TestData/
+
+    - name: Run tests
+      run: dotnet test ForburyExcel/ForburySolution/ForburySolution.csproj --configuration Release --no-build --logger "trx"
+
+    - name: Publish Test Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: ForburySolution/ExcelTests/TestResults
