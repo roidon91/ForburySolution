@@ -27,12 +27,12 @@ jobs:
 
     - name: 🔍 Verify Test File Exists
       run: |
-        ls -lah ForburySolution/TestData/Latest/
-        test -f "ForburySolution/TestData/Latest/Percentage Rent Model - Test Excel file.xlsx" && echo "✅ Test file found!" || (echo "❌ Test file missing!" && exit 1)
+        ls -lah ForburyExcel/ForburySolution/TestData/Latest/
+        test -f "ForburyExcel/ForburySolution/TestData/Latest/Percentage Rent Model - Test Excel file.xlsx" && echo "✅ Test file found!" || (echo "❌ Test file missing!" && exit 1)
 
     - name: 📄 Copy Test Data
       run: |
-        mkdir -p ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest
+        mkdir -p ForburyExcel/ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest
         cp "ForburySolution/TestData/Latest/Percentage Rent Model - Test Excel file.xlsx" ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest/
 
     - name: ✅ Run tests
