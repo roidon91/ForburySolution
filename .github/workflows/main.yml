@@ -28,7 +28,7 @@ jobs:
     - name: 📄 Copy Test Data
       run: |
         mkdir -p ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest/
-        cp ForburySolution/TestData/Latest/Percentage Rent Model - Test Excel file.xlsx ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest/
+        cp ForburySolution/TestData/Latest/*.xlsx ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest/
 
     - name: ✅ Run tests
       run: dotnet test ForburyExcel/ForburySolution.sln --configuration Release --no-build --logger "trx"
