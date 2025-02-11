@@ -25,7 +25,7 @@ public class ExcelColumnValidationTests
     [TestCase("F15","Percentage Rent Tier 3")] // Percentage Rent Tier 3
     public void VerifyColumnExists(string columnCell, string columnName)
     {
-        TestLogger.LogResult(columnName, worksheet.Cells[columnCell].Columns,columnCell);
+        TestLogger.LogResult(columnName, columnCell,worksheet.Cells[columnCell].Columns);
         Assert.That(worksheet.Cells[columnCell], Is.Not.Null, $"Required column {columnCell} is missing for column {columnName}.");
     }
 
@@ -63,7 +63,7 @@ public class ExcelColumnValidationTests
         foreach (var cell in expectedValues)
         {
             var actualValue = worksheet.Cells[cell.Key].Value;
-            TestLogger.LogResult("VerifyColumnValuesMatchExpected", cell.Key, actualValue);
+            TestLogger.LogResult("VerifyColumnValuesMatchExpected", cell.Value, actualValue);
             Assert.That(Convert.ToDouble(actualValue), Is.EqualTo(cell.Value), $"Mismatch in {cell.Key}");
         }
     }
