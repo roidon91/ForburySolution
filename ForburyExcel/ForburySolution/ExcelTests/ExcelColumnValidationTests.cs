@@ -23,7 +23,7 @@ public class ExcelColumnValidationTests
     [TestCase("F15","Percentage Rent Tier 3")] // Percentage Rent Tier 3
     public void VerifyColumnExists(string columnCell, string columnName)
     {
-        TestLogger.LogResult("VerifyColumnExists", columnCell,worksheet.Cells[columnCell].Columns);
+        TestLogger.LogResult("VerifyColumnExists", columnCell,worksheet.Cells[columnCell]);
         Assert.That(worksheet.Cells[columnCell], Is.Not.Null, $"Required column {columnCell} is missing for column {columnName}.");
     }
 
