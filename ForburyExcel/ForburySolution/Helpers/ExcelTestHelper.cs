@@ -1,12 +1,13 @@
-using ClosedXML.Excel;
 using ForburySolution.Utilities;
+using OfficeOpenXml;
 
 namespace ForburySolution.Helpers;
 
-
     public static class ExcelTestHelper
     {
-        private const string BaseDirectory = "TestData/";
+        
+        private static readonly string BaseDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestData");
+        //private const string BaseDirectory = "TestData/";
 
         public static string GetFile(string version = "latest")
         {
@@ -28,9 +29,9 @@ namespace ForburySolution.Helpers;
             return filePath;
         }
 
-        public static IXLWorksheet LoadTestExcel(string version = "latest")
+        public static ExcelWorksheet LoadTestExcel(string version = "latest")
         {
             var filePath = GetFile(version);
-            return ExcelUtils.LoadExcelWorksheet(filePath);
+            return ExcelUtils.LoadWorksheet(filePath);
         }
     }
