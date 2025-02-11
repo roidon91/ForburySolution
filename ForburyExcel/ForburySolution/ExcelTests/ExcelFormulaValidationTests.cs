@@ -7,8 +7,7 @@ namespace ForburySolution.ExcelTests;
 public class ExcelFormulaValidationTests
 {
     private ExcelWorksheet worksheet;
-  
-
+    
     [SetUp]
     public void Setup()
     {
@@ -158,11 +157,6 @@ public class ExcelFormulaValidationTests
             Assert.That(actualFormula, Is.EqualTo(cell.Value), $"Formula for Year Sales tampered in {cell.Key} for {year}");
         }
     }
-    
-    
-    
-    
-    
     
     
     [TearDown]

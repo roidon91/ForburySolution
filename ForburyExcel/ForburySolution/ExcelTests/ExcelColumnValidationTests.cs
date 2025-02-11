@@ -7,10 +7,8 @@ namespace ForburySolution.ExcelTests;
 
 public class ExcelColumnValidationTests
 {
-    
     private ExcelWorksheet worksheet;
-  
-
+    
     [SetUp]
     public void Setup()
     {
@@ -25,7 +23,7 @@ public class ExcelColumnValidationTests
     [TestCase("F15","Percentage Rent Tier 3")] // Percentage Rent Tier 3
     public void VerifyColumnExists(string columnCell, string columnName)
     {
-        TestLogger.LogResult(columnName, columnCell,worksheet.Cells[columnCell].Columns);
+        TestLogger.LogResult("VerifyColumnExists", columnCell,worksheet.Cells[columnCell].Columns);
         Assert.That(worksheet.Cells[columnCell], Is.Not.Null, $"Required column {columnCell} is missing for column {columnName}.");
     }
 
@@ -41,7 +39,7 @@ public class ExcelColumnValidationTests
         {
             var cellAddress = $"{column.Substring(12,1)}{i + 9}"; 
             var cellValue = worksheet.Cells[cellAddress].Value;
-            TestLogger.LogResult(columnName, cellValue, cellAddress);
+            TestLogger.LogResult("VerifyColumnValuesAreNotNull", cellValue, cellAddress);
             Assert.That(cellValue, Is.Not.Null, $"Column {column} has a missing value at {cellAddress} for column {columnName}.");
         }
     }
@@ -73,5 +71,6 @@ public class ExcelColumnValidationTests
     public void TearDown()
     {
         worksheet?.Dispose();
+        TestLogger.PrintSummary();
     }
 }
