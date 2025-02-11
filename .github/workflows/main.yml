@@ -11,35 +11,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: 📥 Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup .NET
+    - name: 🏗️ Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x'  # Use the correct .NET version
 
-    - name: Restore dependencies
+    - name: 📦 Restore dependencies
       run: dotnet restore ForburyExcel/ForburySolution.sln
 
-    - name: Build project
+    - name: 🏗️ Build project
       run: dotnet build ForburyExcel/ForburySolution.sln --configuration Release --no-restore
+
+    - name: 🔍 Verify Test File Exists
+      run: |
+        ls -lah ForburySolution/TestData/Latest/
+        test -f "ForburySolution/TestData/Latest/Percentage Rent Model - Test Excel file.xlsx" && echo "✅ Test file found!" || (echo "❌ Test file missing!" && exit 1)
 
     - name: 📄 Copy Test Data
       run: |
-        mkdir -p ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest/
-        cp ForburySolution/TestData/Latest/Percentage Rent Model - Test Excel file.xlsx ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest/
+        mkdir -p ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest
+        cp "ForburySolution/TestData/Latest/Percentage Rent Model - Test Excel file.xlsx" ForburySolution/ExcelTests/bin/Release/net8.0/TestData/Latest/
 
     - name: ✅ Run tests
       run: dotnet test ForburyExcel/ForburySolution.sln --configuration Release --no-build --logger "trx"
 
-    - name: Upload NUnit Test Results
+    - name: 📂 Upload NUnit Test Results
       uses: actions/upload-artifact@v4
       with:
         name: NUnit-Test-Results
         path: "**/TestResults.trx"
 
-    - name: Upload Test Logger File
+    - name: 📄 Upload Test Logger File
       if: always()
       uses: actions/upload-artifact@v4
       with:
